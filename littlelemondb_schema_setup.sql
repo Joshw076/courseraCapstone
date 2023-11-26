@@ -42,13 +42,31 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `littlelemondb`.`menuitems`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`menuitems` (
+  `id` INT NOT NULL,
+  `coursename` VARCHAR(50) NOT NULL,
+  `startername` VARCHAR(50) NOT NULL,
+  `desertname` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `littlelemondb`.`menu`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `littlelemondb`.`menu` (
   `id` INT NOT NULL,
-  `itemname` VARCHAR(50) NOT NULL,
-  `price` DECIMAL(20,2) NOT NULL,
-  PRIMARY KEY (`id`))
+  `menuitemid` INT NOT NULL,
+  `menuname` VARCHAR(50) NOT NULL,
+  `cuisine` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `menuid`
+    FOREIGN KEY (`id`)
+    REFERENCES `littlelemondb`.`menuitems` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
